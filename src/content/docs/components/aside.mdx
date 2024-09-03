@@ -1,0 +1,131 @@
+---
+title: Aside
+description: >-
+  Asides (also known as “admonitions” or “callouts”) are useful for displaying
+  secondary information alongside a page’s main content.
+template: doc
+pagefind: true
+draft: false
+hero:
+  tagline: >-
+    Asides (also known as “admonitions” or “callouts”) are useful for displaying
+    secondary information alongside a page’s main content.
+  actions:
+    - text: Test 2
+      link: adsf
+      icon: up-caret
+      variant: primary
+    - text: Test
+      link: /test/
+      icon: pencil
+      variant: minimal
+sidebar:
+  hidden: false
+  badge: Badge
+---
+## Variants
+
+Starlight comes with four variants of `Aside` out of the box.
+
+### Default
+
+<Aside type="note">
+  This is an informative aside
+</Aside>
+
+```jsx
+<Aside type="info">
+ This is an informative aside
+</Aside>
+```
+
+### Tip
+
+<Aside type="tip">
+  This is a tip aside
+</Aside>
+
+```jsx
+<Aside type="tip">
+ This is an tip aside
+</Aside>
+```
+
+### Caution
+
+<Aside type="caution">
+  This is a caution aside
+</Aside>
+
+```jsx
+<Aside type="caution">
+ This is an caution aside
+</Aside>
+```
+
+### Danger
+
+<Aside type="danger">
+  This is a danger aside
+</Aside>
+
+```jsx
+<Aside type="danger">
+ This is an tip aside
+</Aside>
+```
+
+## Title property
+
+There's also an optional title property which will replace the default heading.
+
+<Aside title="This a custom title" type="note">
+  This is an informative aside
+</Aside>
+
+```
+<Aside type="info" title="This is a custom title">
+ This is an informative aside
+</Aside>
+```
+
+###
+
+
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title="keystatic.config.tsx"
+Aside: wrapper({
+  label: "Aside",
+  description:
+    "Useful for displaying secondary information alongside a page’s main content.",
+  schema: {
+    title: fields.text({ label: "Title" }),
+    type: fields.select({
+      label: "Type",
+      defaultValue: "note",
+      options: [
+        {
+          label: "Note",
+          value: "note",
+        },
+        {
+          label: "Tip",
+          value: "tip",
+        },
+        {
+          label: "Caution",
+          value: "caution",
+        },
+        {
+          label: "Danger",
+          value: "danger",
+        },
+      ],
+    }),
+  },
+}),
+```
