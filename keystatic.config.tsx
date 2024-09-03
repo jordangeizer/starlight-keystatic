@@ -1,106 +1,106 @@
-import { collection, config, fields, singleton } from '@keystatic/core'
-import { repeating, wrapper } from '@keystatic/core/content-components'
+import { collection, config, fields, singleton } from "@keystatic/core";
+import { repeating, wrapper } from "@keystatic/core/content-components";
 
-import { z } from 'zod'
-import { docsSchema } from '@astrojs/starlight/schema'
+import { z } from "zod";
+import { docsSchema } from "@astrojs/starlight/schema";
 
 // Dodgy but works...
-import { Icons } from 'node_modules/@astrojs/starlight/components/Icons'
+import { Icons } from "node_modules/@astrojs/starlight/components/Icons";
 
 const iconsList = Object.keys(Icons).map((icon) => ({
   label: icon,
   value: icon,
-}))
+}));
 
-type StarlightSchema = z.input<ReturnType<ReturnType<typeof docsSchema>>>
+type StarlightSchema = z.input<ReturnType<ReturnType<typeof docsSchema>>>;
 
-type Hero = StarlightSchema['hero']
+type Hero = StarlightSchema["hero"];
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: "local",
   },
   ui: {
     brand: {
-      name: 'Starlight',
+      name: "Starlight",
     },
   },
   collections: {
-    docs: collection({
-      label: 'Docs',
-      path: 'src/content/docs/**',
-      slugField: 'title',
+    guides: collection({
+      label: "Guides",
+      path: "src/content/docs/guides/**",
+      slugField: "title",
       format: {
-        contentField: 'content',
+        contentField: "content",
       },
       schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Description', multiline: true }),
+        title: fields.slug({ name: { label: "Title" } }),
+        description: fields.text({ label: "Description", multiline: true }),
         template: fields.select({
-          label: 'Template',
+          label: "Template",
           options: [
-            { label: 'Doc', value: 'doc' },
-            { label: 'Splash', value: 'splash' },
+            { label: "Doc", value: "doc" },
+            { label: "Splash", value: "splash" },
           ],
-          defaultValue: 'doc',
+          defaultValue: "doc",
         }),
         hero: fields.object(
           {
-            title: fields.text({ label: 'Title' }),
-            tagline: fields.text({ label: 'Tagline' }),
+            title: fields.text({ label: "Title" }),
+            tagline: fields.text({ label: "Tagline" }),
             image: fields.object({
               file: fields.image({
-                label: 'Image',
-                directory: 'src/assets',
-                publicPath: '@assets',
+                label: "Image",
+                directory: "src/assets",
+                publicPath: "@assets",
               }),
             }),
             actions: fields.array(
               fields.object({
-                text: fields.text({ label: 'Text' }),
-                link: fields.text({ label: 'Link' }),
+                text: fields.text({ label: "Text" }),
+                link: fields.text({ label: "Link" }),
                 icon: fields.select({
-                  label: 'Icon',
+                  label: "Icon",
                   options: iconsList,
                   defaultValue: iconsList[0].value,
                 }),
                 variant: fields.select({
-                  label: 'Variant',
+                  label: "Variant",
                   options: [
-                    { label: 'Primary', value: 'primary' },
-                    { label: 'Secondary', value: 'secondary' },
-                    { label: 'Minimal', value: 'minimal' },
+                    { label: "Primary", value: "primary" },
+                    { label: "Secondary", value: "secondary" },
+                    { label: "Minimal", value: "minimal" },
                   ],
-                  defaultValue: 'minimal',
+                  defaultValue: "minimal",
                 }),
               }),
               {
-                label: 'Actions',
+                label: "Actions",
                 itemLabel: (data) => data.fields.text.value,
               }
             ),
           },
-          { label: 'Hero' }
+          { label: "Hero" }
         ),
-        content: fields.markdoc({
-          label: 'Content',
+        content: fields.mdx({
+          label: "Content",
           components: {
             CardGrid: repeating({
-              label: 'Card Grid',
-              children: ['Card'],
+              label: "Card Grid",
+              children: ["Card"],
               schema: {
                 stagger: fields.checkbox({
-                  label: 'Stagger',
-                  description: 'Check to stagger the cards',
+                  label: "Stagger",
+                  description: "Check to stagger the cards",
                 }),
               },
             }),
             Card: wrapper({
-              label: 'Card',
+              label: "Card",
               schema: {
-                title: fields.text({ label: 'Title' }),
+                title: fields.text({ label: "Title" }),
                 icon: fields.select({
-                  label: 'Icon',
+                  label: "Icon",
                   options: iconsList,
                   defaultValue: iconsList[0].value,
                 }),
@@ -113,44 +113,44 @@ export default config({
   },
   singletons: {
     sidebar: singleton({
-      label: 'Sidebar',
-      path: 'src/data/sidebar',
+      label: "Sidebar",
+      path: "src/data/sidebar",
       format: {
-        data: 'json',
+        data: "json",
       },
       schema: {
         sections: fields.array(
           fields.object({
-            label: fields.text({ label: 'Label' }),
+            label: fields.text({ label: "Label" }),
             kind: fields.conditional(
               fields.select({
-                label: 'Kind',
+                label: "Kind",
                 options: [
-                  { label: 'Items', value: 'items' },
-                  { label: 'Autogenerate', value: 'autogenerate' },
+                  { label: "Items", value: "items" },
+                  { label: "Autogenerate", value: "autogenerate" },
                 ],
-                defaultValue: 'items',
+                defaultValue: "items",
               }),
               {
                 items: fields.array(
                   fields.object({
-                    label: fields.text({ label: 'Label' }),
-                    link: fields.text({ label: 'Link' }),
+                    label: fields.text({ label: "Label" }),
+                    link: fields.text({ label: "Link" }),
                   }),
                   {
-                    label: 'Items',
+                    label: "Items",
                     itemLabel: (data) => data.fields.label.value,
                   }
                 ),
                 autogenerate: fields.object({
-                  directory: fields.text({ label: 'Directory' }),
+                  directory: fields.text({ label: "Directory" }),
                 }),
               }
             ),
           }),
-          { label: 'Links', itemLabel: (data) => data.fields.label.value }
+          { label: "Links", itemLabel: (data) => data.fields.label.value }
         ),
       },
     }),
   },
-})
+});
