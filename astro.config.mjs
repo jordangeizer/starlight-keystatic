@@ -1,16 +1,16 @@
-import { defineConfig } from "astro/config";
-import starlight from "@astrojs/starlight";
-import keystatic from "@keystatic/astro";
-import react from "@astrojs/react";
-import AutoImport from "astro-auto-import";
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import keystatic from '@keystatic/astro';
+import react from '@astrojs/react';
+import AutoImport from 'astro-auto-import';
 
-import { sidebarData } from "./src/data/sidebar-data";
+import { sidebarData } from './src/data/sidebar-data';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
-      title: "Keystatic Starlight",
+      title: 'Keystatic Starlight',
       /* 
         The server needs to be manually restarted whenever 
         the sidebarData below is changed, since nothing 
@@ -24,8 +24,8 @@ export default defineConfig({
     keystatic(),
     react(),
     AutoImport({
-      imports: [{ "@astrojs/starlight/components": ["Aside"] }],
+      imports: [{ '@astrojs/starlight/components': ['Aside'] }],
     }),
   ],
-  output: "hybrid",
+  output: 'hybrid',
 });
