@@ -1,0 +1,66 @@
+---
+title: Icon
+description: >-
+  Starlight provides a set of common icons that you can display in your content
+  using the <Icon> component.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+Starlight provides a set of common icons that you can display in your content using the `<Icon>` component.
+
+Each `<Icon>` requires a [`name`](https://starlight.astro.build/guides/components/#all-icons) and can optionally include a `label` to provide context for screen readers. The `size` and `color` attributes can be used to adjust the icon’s appearance using CSS units and color values.
+
+## Example
+
+<Icon name="star" color="goldenrod" size="2rem" />
+
+<Icon name="rocket" color="var(--sl-color-text-accent)" />
+
+```tsx
+import { Icon } from '@astrojs/starlight/components';
+
+<Icon name="star" color="goldenrod" size="2rem" />
+<Icon name="rocket" color="var(--sl-color-text-accent)" />
+```
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```
+...
+Icon: inline({
+  label: 'Icon',
+  description:
+    'Starlight provides a set of common icons that you can display in your content using the <Icon> component.',
+  schema: {
+    name: fields.select({
+      label: 'Icon',
+      options: iconsList,
+      defaultValue: iconsList[0].value,
+    }),
+    color: fields.text({ label: 'Icon color' }),
+    size: fields.text({ label: 'Icon size' }),
+  },
+}),
+...
+```
+
+### IconList
+
+We have a small script which dynamically generates a list of Starlight icons for Keystatic:
+
+```tsx
+import { Icons } from 'node_modules/@astrojs/starlight/components/Icons';
+
+export const iconsList = [
+  { label: 'No icon', value: '' },
+  ...Object.keys(Icons).map(icon => ({
+    label: icon,
+    value: icon,
+  })),
+];
+```

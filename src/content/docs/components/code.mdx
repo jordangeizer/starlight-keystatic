@@ -1,0 +1,32 @@
+---
+title: Code
+description: Use the <Code> component to render syntax highlighted code
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+A code block is indicated by a block with three backticks ` ``` ` at the start and end. You can indicate the programming language being used after the opening backticks.
+
+```jsx title=src/content/docs/example.mdx
+// Javascript code with syntax highlighting.
+var fun = function lang(l) {
+  dateformat.i18n = require('./lang/' + l);
+  return true;
+};
+```
+
+````
+```js
+// Javascript code with syntax highlighting.
+var fun = function lang(l) {
+  dateformat.i18n = require('./lang/' + l);
+  return true;
+};
+```
+````
+
+## Keystatic configuration
+
+No configuration is needed as Keystatic has built in support for code blocks.

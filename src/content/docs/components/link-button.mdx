@@ -1,0 +1,138 @@
+---
+title: Link button
+description: >-
+  Use the <LinkButton> component for visually distinct call-to-action links. A
+  link button is useful for directing users to the most relevant or actionable
+  content and often used on landing pages.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+Use the `<LinkButton>` component for visually distinct call-to-action links. A link button is useful for directing users to the most relevant or actionable content and often used on landing pages
+
+A `<LinkButton>` requires an [`href`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href) attribute and optionally accepts other link attributes such as `target`.
+
+The `icon` attribute can optionally be set to the name of [one of Starlight’s built-in icons](https://starlight.astro.build/guides/components/#all-icons) to include an icon next to the text. The `iconPlacement` attribute can be used to place the icon before the text by setting it to `start` (defaults to `end`).
+
+Customize the appearance of the link button using the `variant` attribute, which can be set to `primary` (the default), `secondary`, or `minimal`.
+
+## Variants
+
+### Primary
+
+<LinkButton href="/" icon="" iconPlacement="end" variant="primary">
+  Get started
+</LinkButton>
+
+```tsx
+<LinkButton href="/" icon="star" iconPlacement="start" variant="primary">
+  Get started
+</LinkButton>
+```
+
+### Secondary
+
+<LinkButton href="/" icon="" iconPlacement="end" variant="secondary">
+  Get started
+</LinkButton>
+
+```tsx
+<LinkButton href="/" icon="star" iconPlacement="start" variant="primary">
+  Get started
+</LinkButton>
+```
+
+### Minimal
+
+<LinkButton href="/" icon="" iconPlacement="end" variant="minimal">
+  Get started
+</LinkButton>
+
+```tsx
+<LinkButton href="/" icon="star" iconPlacement="start" variant="primary">
+  Get started
+</LinkButton>
+```
+
+## Icon and placement
+
+### Icon start
+
+<LinkButton href="/" icon="star" iconPlacement="start" variant="primary">
+  Get started
+</LinkButton>
+
+```tsx
+<LinkButton href="/" icon="star" iconPlacement="start" variant="primary">
+  Get started
+</LinkButton>
+```
+
+### Icon end
+
+<LinkButton href="/" icon="right-arrow" iconPlacement="end" variant="primary">
+  Get started
+</LinkButton>
+
+```tsx
+<LinkButton href="/" icon="right-arrow" iconPlacement="end" variant="primary">
+  Get started
+</LinkButton>
+```
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+LinkButton: wrapper({
+  label: 'Link button',
+  description:
+    'Use the <LinkButton> component for visually distinct call-to-action links.',
+  schema: {
+    href: fields.url({
+      label: 'Link',
+      description: 'Should start with https://',
+    }),
+    variant: fields.select({
+      label: 'Variant',
+      defaultValue: 'primary',
+      options: [
+        {
+          label: 'Primary',
+          value: 'primary',
+        },
+        {
+          label: 'Secondary',
+          value: 'secondary',
+        },
+        {
+          label: 'Minimal',
+          value: 'minimal',
+        },
+      ],
+    }),
+    icon: fields.select({
+      label: 'Icon',
+      options: iconsList,
+      defaultValue: iconsList[0].value,
+    }),
+    iconPlacement: fields.select({
+      label: 'Icon placement',
+      defaultValue: 'end',
+      options: [
+        {
+          label: 'Start',
+          value: 'start',
+        },
+        {
+          label: 'End',
+          value: 'end',
+        },
+      ],
+    }),
+  },
+}),
+```

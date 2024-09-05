@@ -1,0 +1,106 @@
+---
+title: Card Grid
+description: >-
+  Wrap multiple cards in the <CardGrid> component to display cards side-by-side
+  when there’s enough space.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+Wrap multiple cards in the `<CardGrid>` component to display cards side-by-side when there’s enough space.
+
+## Composition
+
+### Link Cards
+
+Group multiple `<LinkCard>` components in `<CardGrid>` to display cards side-by-side when there’s enough space.
+
+<CardGrid stagger={false}>
+  <LinkCard title="Back to home" href="/" />
+
+  <LinkCard title="To Keystatic" href="/keystatic/" />
+</CardGrid>
+
+```jsx title=src/content/docs/example.mdx
+<CardGrid stagger={false}>
+  <LinkCard title="Back to home" href="/" />
+
+  <LinkCard title="To Keystatic" href="/keystatic/" />
+</CardGrid>
+```
+
+### Cards
+
+<CardGrid stagger={false}>
+  <Card title="Stars" icon="star">
+
+  </Card>
+
+  <Card title="Moons" icon="moon">
+
+  </Card>
+</CardGrid>
+
+```jsx title=src/content/docs/example.mdx
+<CardGrid stagger={false}>
+  <Card title="Stars" icon="star">
+
+  </Card>
+
+  <Card title="Moons" icon="moon">
+
+  </Card>
+</CardGrid>
+```
+
+## Properties
+
+### Stagger
+
+Use a card grid on your home page to display your project’s key features. Add the `stagger` attribute to shift the second column of cards vertically and add visual interest.
+
+<CardGrid stagger>
+  <Card title="Stars" icon="">
+
+  </Card>
+
+  <Card title="Moons" icon="">
+
+  </Card>
+</CardGrid>
+
+```jsx title=src/content/docs/example.mdx
+<CardGrid stagger>
+  <Card title="Stars" icon="">
+
+  </Card>
+
+  <Card title="Moons" icon="">
+
+  </Card>
+</CardGrid>
+```
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+...
+CardGrid: repeating({
+  label: 'Card Grid',
+  description:
+    'Wrap multiple cards in the <CardGrid> component to display cards side-by-side when there’s enough space.',
+  children: ['Card', 'LinkCard'],
+  schema: {
+    stagger: fields.checkbox({
+      label: 'Stagger',
+      description:
+        'Shifts the second column of cards vertically and add visual interest.',
+    }),
+  },
+}),
+...
+```

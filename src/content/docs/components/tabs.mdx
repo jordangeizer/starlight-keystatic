@@ -1,0 +1,116 @@
+---
+title: Tabs
+description: You can display a tabbed interface using the <Tabs> and <TabItem> components.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+You can display a tabbed interface using the `<Tabs>` and `<TabItem>` components. Each `<TabItem>` must have a `label` to display to users. Use the optional `icon` attribute to include one of [Starlight’s built-in icons](https://starlight.astro.build/guides/components/#all-icons) next to the label.
+
+## Example
+
+<Tabs>
+  <TabItem label="Stars" icon="star">
+    Sirius, Vega, Betelgeuse
+  </TabItem>
+
+  <TabItem label="Moons" icon="moon">
+    Io, Europa, Ganymede
+  </TabItem>
+</Tabs>
+
+```jsx title=src/content/docs/example.mdx
+<Tabs>
+  <TabItem label="Stars" icon="star">
+    Sirius, Vega, Betelgeuse
+  </TabItem>
+  <TabItem label="Moons" icon="moon">
+    Io, Europa, Ganymede
+  </TabItem>
+</Tabs>
+```
+
+## Properties
+
+### SyncKey
+
+Keep multiple tab groups synchronized by adding the `syncKey` attribute.
+
+All `<Tabs>` with the same `syncKey` value will display the same active label. This allows your reader to choose once (e.g. their operating system or package manager), and see their choice persisted across page navigations.
+
+To synchronize related tabs, add an identical `syncKey` property to each `<Tabs>` component and ensure that they all use the same `<TabItem>` labels:
+
+Some stars:
+
+<Tabs syncKey="constellations">
+  <TabItem label="Orion" icon="star">
+    Bellatrix, Rigel, Betelgeuse
+  </TabItem>
+
+  <TabItem label="Gemini" icon="moon">
+    Pollux, Castor A, Castor B
+  </TabItem>
+</Tabs>
+
+Some exoplanets:
+
+<Tabs syncKey="constellations">
+  <TabItem label="Orion" icon="star">
+    HD 34445 b, Gliese 179 b, Wasp-82 b
+  </TabItem>
+
+  <TabItem label="Gemini" icon="moon">
+    Pollux b, HAT-P-24b, HD 50554 b
+  </TabItem>
+</Tabs>
+
+```jsx title=src/content/docs/example.mdx
+Some stars:
+
+<Tabs syncKey="constellations">
+  <TabItem label="Orion">Bellatrix, Rigel, Betelgeuse</TabItem>
+  <TabItem label="Gemini">Pollux, Castor A, Castor B</TabItem>
+</Tabs>
+
+Some exoplanets:
+
+<Tabs syncKey="constellations">
+  <TabItem label="Orion">HD 34445 b, Gliese 179 b, Wasp-82 b</TabItem>
+  <TabItem label="Gemini">Pollux b, HAT-P-24b, HD 50554 b</TabItem>
+</Tabs>
+```
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+...
+Tabs: repeating({
+  label: 'Tabs',
+  description:
+    'You can display a tabbed interface using the <Tabs> and <TabItem> components.',
+  children: ['TabItem'],
+  schema: {
+    syncKey: fields.text({
+      label: 'Sync key',
+      description:
+        'Keep multiple tab groups synchronized by adding the syncKey attribute.',
+    }),
+  },
+}),
+TabItem: wrapper({
+  label: 'Tab',
+  schema: {
+    label: fields.text({ label: 'Label', validation: { isRequired: true } }),
+    icon: fields.select({
+      label: 'Icon',
+      options: iconsList,
+      defaultValue: iconsList[0].value,
+    }),
+  },
+}),
+...
+```

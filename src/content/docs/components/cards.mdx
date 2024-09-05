@@ -1,0 +1,91 @@
+---
+title: Cards
+description: >-
+  You can display content in a box matching Starlight’s styles using the <Card>
+  component. Wrap multiple cards in the <CardGrid> component to display cards
+  side-by-side when there’s enough space.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+You can display content in a box matching Starlight’s styles using the `<Card>` component.&#x20;
+
+A `<Card>` requires a `title` and can optionally include an `icon` attribute set to the name of [one of Starlight’s built-in icons](https://starlight.astro.build/guides/components/#all-icons).
+
+## Variants
+
+### Title, icon and contents
+
+<Card title="Stars" icon="star">
+  Sirius, Vega, Betelgeuse
+</Card>
+
+```jsx title=src/content/docs/example.mdx
+<Card title="Stars" icon="star">
+  Sirius, Vega, Betelgeuse
+</Card>
+```
+
+### Title and icon
+
+<Card title="Stars" icon="star">
+
+</Card>
+
+```jsx title=src/content/docs/example.mdx
+<Card title="Stars" icon="star"/>
+```
+
+### Title and contents
+
+<Card title="Stars" icon="">
+  Sirius, Vega, Betelgeuse
+</Card>
+
+```jsx title=src/content/docs/example.mdx
+<Card title="Stars">
+  Sirius, Vega, Betelgeuse
+</Card>
+```
+
+## Composition
+
+Wrap multiple cards in the `<CardGrid>` component to display cards side-by-side when there’s enough space.
+
+<CardGrid stagger={false}>
+  <Card title="Stars" icon="">
+    Sirius, Vega, Betelgeuse
+  </Card>
+
+  <Card title="Stars" icon="">
+    Sirius, Vega, Betelgeuse
+  </Card>
+
+  <Card title="Stars" icon="">
+    Sirius, Vega, Betelgeuse
+  </Card>
+</CardGrid>
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+...
+Card: wrapper({
+  label: 'Card',
+  description:
+    'You can display content in a box matching Starlight’s styles using the <Card> component.',
+  schema: {
+    title: fields.text({ label: 'Title' }),
+    icon: fields.select({
+      label: 'Icon',
+      options: iconsList,
+      defaultValue: iconsList[0].value,
+    }),
+  },
+}),
+...
+```

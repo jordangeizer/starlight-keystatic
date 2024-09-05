@@ -1,0 +1,60 @@
+---
+title: Link cards
+description: Use the <LinkCard> component to link prominently to different pages.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+Use the `<LinkCard>` component to link prominently to different pages.
+
+A `<LinkCard>` requires a `title` and an [`href`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href) attribute. You can optionally include a short `description` or other link attributes such as `target`.
+
+<LinkCard title="Back to home" href="/" description="This card will take you home" />
+
+### Card grid
+
+Group multiple `<LinkCard>` components in `<CardGrid>` to display cards side-by-side when there’s enough space.
+
+<CardGrid stagger={false}>
+  <LinkCard title="Back to home" href="/" />
+
+  <LinkCard title="To Keystatic" href="/keystatic/" />
+</CardGrid>
+
+```jsx title=src/content/docs/example.mdx
+<CardGrid stagger={false}>
+  <LinkCard title="Back to home" href="/" />
+
+  <LinkCard title="To Keystatic" href="/keystatic/" />
+</CardGrid>
+```
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+...
+LinkCard: block({
+  label: 'Link card',
+  description:
+    'Use the <LinkCard> component to link prominently to different pages.',
+  schema: {
+    title: fields.text({
+      label: 'Text',
+      validation: { isRequired: true },
+    }),
+    href: fields.url({
+      label: 'Link',
+      description: 'Should start with https://',
+      validation: { isRequired: true },
+    }),
+    description: fields.text({
+      label: 'Description',
+    }),
+  },
+}),
+...
+```

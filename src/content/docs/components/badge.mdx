@@ -1,0 +1,149 @@
+---
+title: Badge
+description: >-
+  Use the <Badge> component to display small pieces of information, such as
+  status or labels.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+Use the `<Badge>` component to display small pieces of information, such as status or labels.
+
+Pass the content you want to display to the `text` attribute of the `<Badge>` component.
+
+By default, the badge will use the theme accent color of your site. To use a built-in badge color, set the `variant` attribute to one of the following values: `note` (blue), `tip` (purple), `danger` (red), `caution` (orange), or `success` (green).
+
+The `size` attribute (default: `small`) controls the size of the badge text. `medium` and `large` are also available options for displaying a larger badge.
+
+For further customization, use other `<span>` attributes such as `class` or `style` with custom CSS.
+
+## Variants
+
+### Note
+
+This is a <Badge text="Badge" variant="note" size="small" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="New" variant="note" size="small" />
+```
+
+### Tip
+
+This is a <Badge text="Badge" variant="tip" size="small" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="Badge" variant="tip" size="small" />
+```
+
+### Caution
+
+This is a <Badge text="Badge" variant="caution" size="small" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="Badge" variant="caution" size="small" />
+```
+
+### Danger
+
+This is a <Badge text="Badge" variant="danger" size="small" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="Badge" variant="danger" size="small" />
+```
+
+### Success
+
+This is a <Badge text="Badge" variant="success" size="small" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="Badge" variant="success" size="small" />
+```
+
+## Size
+
+### Small
+
+This is a small <Badge text="Badge" variant="note" size="small" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="New" variant="note" size="small" />
+```
+
+### Medium
+
+This is a medium <Badge text="Badge" variant="note" size="medium" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="New" variant="note" size="medium" />
+```
+
+### Large
+
+This is a large <Badge text="Badge" variant="note" size="large" /> that is inline positioned.
+
+```jsx title=src/content/docs/example.mdx
+<Badge text="New" variant="note" size="large" />
+```
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+...
+Badge: inline({
+  label: 'Badge',
+  description:
+    'Use the <Badge> component to display small pieces of information, such as status or labels.',
+  schema: {
+    text: fields.text({ label: 'Text' }),
+    variant: fields.select({
+      label: 'Type',
+      defaultValue: 'note',
+      options: [
+        {
+          label: 'Note',
+          value: 'note',
+        },
+        {
+          label: 'Tip',
+          value: 'tip',
+        },
+        {
+          label: 'Caution',
+          value: 'caution',
+        },
+        {
+          label: 'Danger',
+          value: 'danger',
+        },
+        {
+          label: 'Success',
+          value: 'success',
+        },
+      ],
+    }),
+    size: fields.select({
+      label: 'Size',
+      defaultValue: 'small',
+      options: [
+        {
+          label: 'Small',
+          value: 'small',
+        },
+        {
+          label: 'Medium',
+          value: 'medium',
+        },
+        {
+          label: 'Large',
+          value: 'large',
+        },
+      ],
+    }),
+  },
+}),
+...
+```

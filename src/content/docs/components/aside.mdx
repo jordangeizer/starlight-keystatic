@@ -6,22 +6,8 @@ description: >-
 template: doc
 pagefind: true
 draft: false
-hero:
-  tagline: >-
-    Asides (also known as “admonitions” or “callouts”) are useful for displaying
-    secondary information alongside a page’s main content.
-  actions:
-    - text: Test 2
-      link: adsf
-      icon: up-caret
-      variant: primary
-    - text: Test
-      link: /test/
-      icon: pencil
-      variant: minimal
 sidebar:
   hidden: false
-  badge: Badge
 ---
 ## Variants
 
@@ -33,7 +19,7 @@ Starlight comes with four variants of `Aside` out of the box.
   This is an informative aside
 </Aside>
 
-```jsx
+```jsx title=src/content/docs/example.mdx
 <Aside type="info">
  This is an informative aside
 </Aside>
@@ -45,7 +31,7 @@ Starlight comes with four variants of `Aside` out of the box.
   This is a tip aside
 </Aside>
 
-```jsx
+```jsx title=src/content/docs/example.mdx
 <Aside type="tip">
  This is an tip aside
 </Aside>
@@ -57,7 +43,7 @@ Starlight comes with four variants of `Aside` out of the box.
   This is a caution aside
 </Aside>
 
-```jsx
+```jsx title=src/content/docs/example.mdx
 <Aside type="caution">
  This is an caution aside
 </Aside>
@@ -69,7 +55,7 @@ Starlight comes with four variants of `Aside` out of the box.
   This is a danger aside
 </Aside>
 
-```jsx
+```jsx title=src/content/docs/example.mdx
 <Aside type="danger">
  This is an tip aside
 </Aside>
@@ -83,7 +69,7 @@ There's also an optional title property which will replace the default heading.
   This is an informative aside
 </Aside>
 
-```
+```jsx title=src/content/docs/example.mdx
 <Aside type="info" title="This is a custom title">
  This is an informative aside
 </Aside>
@@ -91,13 +77,12 @@ There's also an optional title property which will replace the default heading.
 
 ###
 
-
-
 ## Keystatic config
 
 To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
 
-```tsx title="keystatic.config.tsx"
+```tsx title=keystatic.config.tsx
+...
 Aside: wrapper({
   label: "Aside",
   description:
@@ -128,4 +113,5 @@ Aside: wrapper({
     }),
   },
 }),
+...
 ```

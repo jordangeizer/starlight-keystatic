@@ -1,0 +1,52 @@
+---
+title: Steps
+description: >-
+  Use the <Steps> component to style numbered lists of tasks. This is useful for
+  more complex step-by-step guides where each step needs to be clearly
+  highlighted.
+template: doc
+pagefind: true
+draft: false
+sidebar:
+  hidden: false
+---
+Use the `<Steps>` component to style numbered lists of tasks. This is useful for more complex step-by-step guides where each step needs to be clearly highlighted.
+
+Wrap `<Steps>` around a standard Markdown ordered list. All the usual Markdown syntax is applicable inside `<Steps>`.
+
+## Example
+
+<Steps>
+  1. Import the component into your MDX file:
+
+     ```jsx title=src/content/docs/example.mdx
+     import { Steps } from '@astrojs/starlight/components
+     ```
+  2. Wrap \`\<Steps>\` around your ordered list items.
+</Steps>
+
+````jsx title=src/content/docs/example.mdx
+<Steps>
+
+1. Import the component into your MDX file:
+
+   ```js
+   import { Steps } from '@astrojs/starlight/components';
+   ```
+
+2. Wrap `<Steps>` around your ordered list items.
+
+</Steps>
+````
+
+## Keystatic config
+
+To add this Starlight component as a Keystatic content component, register it as a content component with the following schema:
+
+```tsx title=keystatic.config.tsx
+Steps: wrapper({
+  label: 'Steps',
+  description: 'Use the <Steps> component to style numbered lists of tasks.',
+  schema: {},
+}),
+```
