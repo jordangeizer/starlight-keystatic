@@ -9,6 +9,7 @@ import linkButtonSchema from 'src/content/docs/components/link-button-schema';
 import linkCardSchema from 'src/content/docs/components/link-card-schema';
 import stepsSchema from 'src/content/docs/components/steps-schema';
 import tabsSchema from 'src/content/docs/components/tabs-schema';
+import { sidebar } from 'src/data/sidebar-schema';
 
 export default config({
   storage: {
@@ -134,45 +135,6 @@ export default config({
     }),
   },
   singletons: {
-    sidebar: singleton({
-      label: 'Sidebar',
-      path: 'src/data/sidebar',
-      format: {
-        data: 'json',
-      },
-      schema: {
-        sections: fields.array(
-          fields.object({
-            label: fields.text({ label: 'Label' }),
-            kind: fields.conditional(
-              fields.select({
-                label: 'Kind',
-                options: [
-                  { label: 'Items', value: 'items' },
-                  { label: 'Autogenerate', value: 'autogenerate' },
-                ],
-                defaultValue: 'items',
-              }),
-              {
-                items: fields.array(
-                  fields.object({
-                    label: fields.text({ label: 'Label' }),
-                    link: fields.text({ label: 'Link' }),
-                  }),
-                  {
-                    label: 'Items',
-                    itemLabel: data => data.fields.label.value,
-                  }
-                ),
-                autogenerate: fields.object({
-                  directory: fields.text({ label: 'Directory' }),
-                }),
-              }
-            ),
-          }),
-          { label: 'Links', itemLabel: data => data.fields.label.value }
-        ),
-      },
-    }),
+    // ...sidebar,
   },
 });
