@@ -24,7 +24,23 @@ export default defineConfig({
     keystatic(),
     react(),
     AutoImport({
-      imports: [{ '@astrojs/starlight/components': ['Aside'] }],
+      imports: [
+        {
+          '@astrojs/starlight/components': [
+            'Aside',
+            'Badge',
+            'Card',
+            'CardGrid',
+            'FileTree',
+            'Icon',
+            'LinkButton',
+            'LinkCard',
+            'Steps',
+            'TabItem',
+            'Tabs',
+          ],
+        },
+      ],
     }),
   ],
   output: 'hybrid',
