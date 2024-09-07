@@ -11,6 +11,11 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Keystatic Starlight',
+      logo: {
+        light: './src/assets/light-logo.svg',
+        dark: './src/assets/dark-logo.svg',
+        replacesTitle: true,
+      },
       /* 
         The server needs to be manually restarted whenever 
         the sidebarData below is changed, since nothing 
