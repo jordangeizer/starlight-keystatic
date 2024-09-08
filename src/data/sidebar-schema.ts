@@ -1,6 +1,6 @@
 import { singleton, fields } from '@keystatic/core';
 
-export const sidebar = {
+export const sidebarSchema = {
   sidebar: singleton({
     label: 'Sidebar',
     path: 'src/data/sidebar',
