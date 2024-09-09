@@ -16,6 +16,9 @@ export default defineConfig({
         dark: './src/assets/dark-logo.svg',
         replacesTitle: true,
       },
+      social: {
+        github: 'https://github.com/jordangeizer/starlight-keystatic'
+      },
       /* 
         The server needs to be manually restarted whenever 
         the sidebarData below is changed, since nothing 
