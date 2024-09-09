@@ -8,12 +8,27 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
-	adapter: vercel(),
-	output: 'hybrid',
-	integrations: [
-		keystatic(),
+  integrations: [
+    starlight({
+      title: 'Keystatic Starlight',
+      logo: {
+        light: './src/assets/light-logo.svg',
+        dark: './src/assets/dark-logo.svg',
+        replacesTitle: true,
+      },
+      /* 
+        The server needs to be manually restarted whenever 
+        the sidebarData below is changed, since nothing 
+        on this file is changing.
+
+        Is there a way to "watch" a specific file for 
+        change and trigger a server restart?
+      */
+      // sidebar: sidebarData,
+    }),
+    keystatic(),
     react(),
-		AutoImport({
+    AutoImport({
       imports: [
         {
           '@astrojs/starlight/components': [
@@ -32,22 +47,7 @@ export default defineConfig({
         },
       ],
     }),
-		starlight({
-			title: 'Keystatic Starlight',
-      logo: {
-        light: './src/assets/light-logo.svg',
-        dark: './src/assets/dark-logo.svg',
-        replacesTitle: true,
-      },
-			/* 
-        The server needs to be manually restarted whenever 
-        the sidebarData below is changed, since nothing 
-        on this file is changing.
-
-        Is there a way to "watch" a specific file for 
-        change and trigger a server restart?
-      */
-      // sidebar: sidebarData,
-		}),
-	],
+  ],
+  output: 'hybrid',
+  adapter: vercel(),
 });
