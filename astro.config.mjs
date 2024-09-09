@@ -24,7 +24,16 @@ export default defineConfig({
         Is there a way to "watch" a specific file for 
         change and trigger a server restart?
       */
-      // sidebar: sidebarData,
+      sidebar: [
+				{
+					slug: 'index',
+				},
+				{
+					label: 'Components',
+					autogenerate: { directory: 'components' },
+					collapsed: false
+				},
+			],
     }),
     keystatic(),
     react(),
