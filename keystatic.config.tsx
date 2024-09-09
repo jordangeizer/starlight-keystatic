@@ -1,4 +1,4 @@
-import { collection, config, fields, singleton } from '@keystatic/core';
+import { collection, config, fields } from '@keystatic/core';
 import asideSchema from 'src/content/docs/components/aside-schema';
 import badgeSchema from 'src/content/docs/components/badge-schema';
 import cardGridSchema from 'src/content/docs/components/card-grid-schema';
@@ -10,7 +10,6 @@ import linkCardSchema from 'src/content/docs/components/link-card-schema';
 import stepsSchema from 'src/content/docs/components/steps-schema';
 import tabsSchema from 'src/content/docs/components/tabs-schema';
 import { frontmatterSchema } from 'src/content/docs/frontmatter-schema';
-import { sidebarSchema } from 'src/data/sidebar-schema';
 
 export default config({
   storage: {
@@ -51,6 +50,5 @@ export default config({
     }),
   },
   singletons: {
-    // ...sidebarSchema,
   },
 });
