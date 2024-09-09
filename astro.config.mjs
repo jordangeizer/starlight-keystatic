@@ -3,8 +3,10 @@ import starlight from '@astrojs/starlight';
 import keystatic from '@keystatic/astro';
 import react from '@astrojs/react';
 import AutoImport from 'astro-auto-import';
+import vercel from '@astrojs/vercel';
 
 import { sidebarData } from './src/data/sidebar-data';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -48,5 +50,7 @@ export default defineConfig({
       ],
     }),
   ],
+
   output: 'hybrid',
+  adapter: vercel(),
 });
